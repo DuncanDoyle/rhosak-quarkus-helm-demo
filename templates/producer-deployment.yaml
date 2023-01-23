@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rhosak-quarkus-kafka-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: rhosak-quarkus-kafka-producer
+      version: 1.0.0-SNAPSHOT
+  template:
+    metadata:
+      labels:
+        name: rhosak-quarkus-kafka-producer
+        version: 1.0.0-SNAPSHOT
+    spec:
+      #securityContext:
+      #  runAsNonRoot: true
+      #  seccompProfile:
+      #    type: RuntimeDefault               
+      containers:
+        - env:
+            - name: KAFKA_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.rhoas.config }}
+                  key: kafka_host
+            - name: RHOAS_SERVICE_ACCOUNT_OAUTH_TOKEN_URL
+              valueFrom:
+                secretKeyRef:
+                  name:  {{ .Values.rhoas.secret }}
+                  key: RHOAS_SERVICE_ACCOUNT_OAUTH_TOKEN_URL
+            - name: RHOAS_SERVICE_ACCOUNT_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name:  {{ .Values.rhoas.secret }}
+                  key: RHOAS_SERVICE_ACCOUNT_CLIENT_ID
+            - name: RHOAS_SERVICE_ACCOUNT_CLIENT_SECRET  
+              valueFrom:
+                secretKeyRef:
+                  name:  {{ .Values.rhoas.secret }}
+                  key: RHOAS_SERVICE_ACCOUNT_CLIENT_SECRET
+          image: quay.io/ddoyle/rhosak-quarkus-kafka-producer:1.0.0-SNAPSHOT
+          imagePullPolicy: Always
+          name: rhosak-quarkus-kafka-producer
+          #securityContext:
+          #  allowPrivilegeEscalation: false
+          #  capabilities:
+          #    drop:
+          #      - ALL
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP

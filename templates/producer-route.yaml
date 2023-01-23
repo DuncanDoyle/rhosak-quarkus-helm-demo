@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    name: rhosak-quarkus-kafka-producer
+    version: 1.0.0-SNAPSHOT
+  name: rhosak-quarkus-kafka-producer
+spec:
+#  host: rhosak-quarkus-kafka-producer-rhosak-quarkus.apps-crc.testing
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: rhosak-quarkus-kafka-producer
+    weight: 100
+  wildcardPolicy: None

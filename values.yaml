@@ -1,0 +1,4 @@
+## RHOAS Config
+rhoas: 
+   config: dev-env-configuration
+   secret: service-account-credentials

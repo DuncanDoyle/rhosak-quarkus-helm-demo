@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: rhosak-quarkus-kafka-producer
+    version: 1.0.0-SNAPSHOT
+  name: rhosak-quarkus-kafka-producer
+spec:
+  selector:
+    name: rhosak-quarkus-kafka-producer
+    version: 1.0.0-SNAPSHOT
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+#    nodePort: 31110
