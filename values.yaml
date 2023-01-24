@@ -4,3 +4,6 @@ rhoas:
    secret: service-account-credentials
 kafka:
    host: samurai-pi-cf--atv-p-ia-r-hr--a.bf2.kafka.rhcloud.com:443
+client:
+   id: a9f8a767-f55f-40f7-b15a-98a928539c47
+   secret: BsXie9kZWHPiDVHR5o51quP3A2GoYRYc
