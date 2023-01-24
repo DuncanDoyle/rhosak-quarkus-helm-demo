@@ -2,3 +2,5 @@
 rhoas: 
    config: dev-env-configuration
    secret: service-account-credentials
+kafka:
+   host: samurai-pi-cf--atv-p-ia-r-hr--a.bf2.kafka.rhcloud.com:443:
